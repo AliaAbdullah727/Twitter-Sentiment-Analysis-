@@ -38,25 +38,31 @@ pip install pandas numpy nltk scikit-learn opendatasets joblib
     *   The `stemmed_content` is converted into numerical features using `TfidfVectorizer`.
 5.  **Data Splitting:** The dataset is split into training and testing sets (80% training, 20% testing).
 6.  **Model Training:** A `LogisticRegression` model is trained on the TF-IDF vectorized training data.
-7.  **Model Evaluation:** The model's performance is evaluated using `accuracy_score` and `classification_report` on the test set.
+7.  **Model Evaluation:** The model's performance is evaluated using `accuracy_score`, `classification_report`, `confusion_matrix`, and `ROC curve` with `AUC score` on the test set.
 8.  **Model Persistence:** The trained model is saved using `joblib` for future use and then reloaded to demonstrate its functionality.
 9.  **Prediction on Sample:** The reloaded model is tested on a sample tweet from the dataset to verify its predictions.
 
 ## Results
 The Logistic Regression model achieved a high accuracy on the test set:
 
-*   **Accuracy:** 0.9884 (98.84%)
+*   **Accuracy:** 0.7767
 *   **Classification Report:**
     ```
                   precision    recall  f1-score   support
 
-               0       1.00      0.98      0.99    160000
-               1       0.98      1.00      0.99    160000
+               0       0.79      0.76      0.77    160000
+               1       0.77      0.80      0.78    160000
 
-        accuracy                           0.99    320000
-       macro avg       0.99      0.99      0.99    320000
-    weighted avg       0.99      0.99      0.99    320000
+        accuracy                           0.78    320000
+       macro avg       0.78      0.78      0.78    320000
+    weighted avg       0.78      0.78      0.78    320000
     ```
+*   **Confusion Matrix:**
+    *   True Negatives: 121,246
+    *   False Positives: 38,754
+    *   False Negatives: 32,708
+    *   True Positives: 127,292
+*   **ROC AUC Score:** 0.8570
 
 ## Usage
 To replicate this project:
