@@ -72,4 +72,25 @@ To replicate this project:
 3.  **Run the Jupyter Notebook/Colab Notebook** cells in sequence.
 4.  You will be prompted to enter your Kaggle credentials to download the dataset during the `opendatasets` step. If you don't have them, you can create an account on Kaggle and generate an API token.
 
-The trained model will be saved as `logistic_regression_model.pkl` in the current directory.
+The trained classifier and fitted TF-IDF vectorizer will be saved together as
+`logistic_regression_model.pkl`, so the artifact supports standalone inference.
+
+### Xquik or TweetClaw Export Input
+
+Use `tools/xquik_to_inference_csv.py` to turn reviewed Xquik/TweetClaw tweet
+exports into a simple `text` CSV that can be loaded in the notebook for model
+inference or extra evaluation:
+
+```bash
+python tools/xquik_to_inference_csv.py \
+  --input path/to/xquik-export.jsonl \
+  --output inference_input.csv
+```
+
+The converter accepts CSV, JSON, and JSONL exports. It skips rows explicitly
+marked as `unreviewed`, `needs_review`, `not_approved`, `pending`, or
+`rejected` by default, which keeps draft or rejected social data out of manual
+sentiment checks.
+
+Xquik is an independent third-party service. Not affiliated with X Corp.
+"Twitter" and "X" are trademarks of X Corp.
